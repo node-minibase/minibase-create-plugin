@@ -52,6 +52,13 @@
     ],
     "lint": {
       "reflinks": true
-    }
+    },
+    "related": {
+      "list": []
+    },
+    "reflinks": [
+      "base",
+      "minibase"
+    ]
   }
 }
