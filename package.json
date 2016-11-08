@@ -50,15 +50,24 @@
     "tasks": [
       "readme"
     ],
-    "lint": {
-      "reflinks": true
-    },
     "related": {
-      "list": []
+      "list": [
+        "minibase",
+        "minibase-visit",
+        "minibase-is-registered",
+        "minibase-better-define",
+        "minibase-assert"
+      ]
     },
     "reflinks": [
       "base",
-      "minibase"
-    ]
+      "minibase",
+      "assert-kindof",
+      "collection-visit",
+      "minibase-is-registered"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
