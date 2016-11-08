@@ -37,7 +37,24 @@
   "files": [
     "index.js"
   ],
-  "keywords": [],
+  "keywords": [
+    "baseplugin",
+    "better",
+    "create",
+    "createplugin",
+    "help",
+    "helper",
+    "helps",
+    "mini",
+    "minibase",
+    "minibaseplugin",
+    "plugin",
+    "register",
+    "registered",
+    "stable",
+    "util",
+    "utility"
+  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
