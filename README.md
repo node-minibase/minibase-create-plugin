@@ -20,6 +20,42 @@ const minibaseCreatePlugin = require('minibase-create-plugin')
 
 ## API
 
+### [minibaseCreatePlugin](index.js#L50)
+> Creates a plugin for Base and MiniBase, that uses the [minibase-is-registered][] under the hood to provide more stable and friendly API for plugins.
+
+**Params**
+
+* `name` **{String}**: name of the plugin, passed to `.isRegistered`    
+* `fn` **{Function}**: plugin function, passed to `.use` method, so called immediately    
+* `returns` **{Function}**: plugin function that should be passed to `.use` method  
+
+**Example**
+
+```js
+var minibase = require('minibase')
+var createPlugin = require('minibase-create-plugin')
+
+var called = 0
+
+var plugin = createPlugin('foo-bar', function (self) {
+  called++
+  self.foo = 'bar'
+  self.define('qux', function quxMethod () {})
+  self.define('abc', function abc () {})
+})
+
+minibase.use(plugin)
+minibase.use(plugin)
+
+console.log(minibase.foo) // => 'bar'
+console.log(minibase.qux) // => Function: qux
+console.log(minibase.abc) // => Function: abc
+console.log(minibase.registered) // => { 'foo-bar': ['qux', 'abc'] }
+
+// called only once
+console.log(called) // => 1
+```
+
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/node-minibase/minibase-create-plugin/issues/new).  
 But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
@@ -27,6 +63,9 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 ## [Charlike Make Reagent](http://j.mp/1stW47C) [![new message to charlike][new-message-img]][new-message-url] [![freenode #charlike][freenode-img]][freenode-url]
 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
+
+[base]: https://github.com/node-base/base
+[minibase]: https://github.com/node-minibase/minibase
 
 [npmjs-url]: https://www.npmjs.com/package/minibase-create-plugin
 [npmjs-img]: https://img.shields.io/npm/v/minibase-create-plugin.svg?label=minibase-create-plugin
@@ -73,5 +112,4 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [new-message-url]: https://github.com/tunnckoCore/ama
 [new-message-img]: https://img.shields.io/badge/ask%20me-anything-green.svg
 
-[base]: https://github.com/node-base/base
-[minibase]: https://github.com/node-minibase/minibase
+[minibase-is-registered]: https://github.com/node-minibase/minibase-is-registered
