@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/node-minibase">
+    <img height="250" width="250" src="https://avatars1.githubusercontent.com/u/23032863?v=3&s=250">
+  </a>
+</p>
+
 # [minibase-create-plugin][author-www-url] [![npmjs.com][npmjs-img]][npmjs-url] [![The MIT License][license-img]][license-url] [![npm downloads][downloads-img]][downloads-url] 
 
 > Utility for [minibase][] and [base][] that helps you create plugins
@@ -71,7 +77,10 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
 
+[assert-kindof]: https://github.com/tunnckocore/assert-kindof
 [base]: https://github.com/node-base/base
+[collection-visit]: https://github.com/jonschlinkert/collection-visit
+[minibase-is-registered]: https://github.com/node-minibase/minibase-is-registered
 [minibase]: https://github.com/node-minibase/minibase
 
 [npmjs-url]: https://www.npmjs.com/package/minibase-create-plugin
@@ -119,6 +128,3 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [new-message-url]: https://github.com/tunnckoCore/ama
 [new-message-img]: https://img.shields.io/badge/ask%20me-anything-green.svg
 
-[assert-kindof]: https://github.com/tunnckocore/assert-kindof
-[collection-visit]: https://github.com/jonschlinkert/collection-visit
-[minibase-is-registered]: https://github.com/node-minibase/minibase-is-registered
