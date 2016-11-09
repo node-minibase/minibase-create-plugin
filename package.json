@@ -1,6 +1,6 @@
 {
   "name": "minibase-create-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility for [minibase][] and [base][] that helps you create plugins",
   "repository": "node-minibase/minibase-create-plugin",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
