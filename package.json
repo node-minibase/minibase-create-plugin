@@ -62,7 +62,12 @@
   },
   "verb": {
     "run": true,
-    "toc": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 3,
+      "footer": ""
+    },
     "layout": "empty",
     "tasks": [
       "readme"
@@ -77,11 +82,15 @@
       ]
     },
     "reflinks": [
-      "base",
-      "minibase",
       "assert-kindof",
+      "base",
       "collection-visit",
-      "minibase-is-registered"
+      "minibase",
+      "minibase-is-registered",
+      "commitizen",
+      "standard-version",
+      "verb",
+      "verb-generate-readme"
     ],
     "lint": {
       "reflinks": true
