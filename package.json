@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Utility for [minibase][] and [base][] that helps you create plugins",
   "repository": "node-minibase/minibase-create-plugin",
-  "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "author": "Charlike Mike Reagent <@tunnckoCore> (http://i.am.charlike.online)",
   "precommit.silent": true,
   "main": "index.js",
   "license": "MIT",
