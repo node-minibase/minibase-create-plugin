@@ -6,7 +6,7 @@
 
 # minibase-create-plugin [![npm version][npmv-img]][npmv-url] [![github tags][ghtag-img]][ghtag-url] [![mit license][license-img]][license-url]
 
-> Utility for [base][] and [minibase][]/[dush][] for creating plugins more easily
+> Utility helper for creating [dush][]/[minibase][] plugins more easily. Plugins created with this _may_ partially work for [base][] too
 
 You might also be interested in [minibase](https://github.com/node-minibase/minibase#readme).
 
