@@ -145,7 +145,7 @@ $ npm install && npm test
 + [codementor/tunnckoCore](https://codementor.io/tunnckoCore)
 
 ## License
-Copyright © 2017, [Charlike Mike Reagent](https://i.am.charlike.online). Released under the [MIT License](LICENSE).
+Copyright © 2016-2017, [Charlike Mike Reagent](https://i.am.charlike.online). Released under the [MIT License](LICENSE).
 
 ***
 
@@ -161,32 +161,32 @@ _Project scaffolded using [charlike][] cli._
 [verb-generate-readme]: https://github.com/verbose/verb-generate-readme
 [verb]: https://github.com/verbose/verb
 
-[license-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/LICENSE
+[license-url]: https://github.com/node-minibase/minibase-create-plugin/blob/master/LICENSE
 [license-img]: https://img.shields.io/npm/l/minibase-create-plugin.svg
 
 [downloads-url]: https://www.npmjs.com/package/minibase-create-plugin
 [downloads-img]: https://img.shields.io/npm/dt/minibase-create-plugin.svg
 
-[codeclimate-url]: https://codeclimate.com/github/tunnckoCore/minibase-create-plugin
-[codeclimate-img]: https://img.shields.io/codeclimate/github/tunnckoCore/minibase-create-plugin.svg
+[codeclimate-url]: https://codeclimate.com/github/node-minibase/minibase-create-plugin
+[codeclimate-img]: https://img.shields.io/codeclimate/github/node-minibase/minibase-create-plugin.svg
 
-[circle-url]: https://circleci.com/gh/tunnckoCore/minibase-create-plugin
-[circle-img]: https://img.shields.io/circleci/project/github/tunnckoCore/minibase-create-plugin/master.svg?label=linux
+[circle-url]: https://circleci.com/gh/node-minibase/minibase-create-plugin
+[circle-img]: https://img.shields.io/circleci/project/github/node-minibase/minibase-create-plugin/master.svg?label=linux
 
 [appveyor-url]: https://ci.appveyor.com/project/tunnckoCore/minibase-create-plugin
 [appveyor-img]: https://img.shields.io/appveyor/ci/tunnckoCore/minibase-create-plugin/master.svg?label=windows
 
-[codecov-url]: https://codecov.io/gh/tunnckoCore/minibase-create-plugin
-[codecov-img]: https://img.shields.io/codecov/c/github/tunnckoCore/minibase-create-plugin/master.svg?label=codecov
+[codecov-url]: https://codecov.io/gh/node-minibase/minibase-create-plugin
+[codecov-img]: https://img.shields.io/codecov/c/github/node-minibase/minibase-create-plugin/master.svg?label=codecov
 
-[daviddm-deps-url]: https://david-dm.org/tunnckoCore/minibase-create-plugin
-[daviddm-deps-img]: https://img.shields.io/david/tunnckoCore/minibase-create-plugin.svg
+[daviddm-deps-url]: https://david-dm.org/node-minibase/minibase-create-plugin
+[daviddm-deps-img]: https://img.shields.io/david/node-minibase/minibase-create-plugin.svg
 
-[daviddm-devdeps-url]: https://david-dm.org/tunnckoCore/minibase-create-plugin?type=dev
-[daviddm-devdeps-img]: https://img.shields.io/david/dev/tunnckoCore/minibase-create-plugin.svg
+[daviddm-devdeps-url]: https://david-dm.org/node-minibase/minibase-create-plugin?type=dev
+[daviddm-devdeps-img]: https://img.shields.io/david/dev/node-minibase/minibase-create-plugin.svg
 
-[ghtag-url]: https://github.com/tunnckoCore/minibase-create-plugin/tags
-[ghtag-img]: https://img.shields.io/github/tag/tunnckoCore/minibase-create-plugin.svg?label=github%20tag
+[ghtag-url]: https://github.com/node-minibase/minibase-create-plugin/tags
+[ghtag-img]: https://img.shields.io/github/tag/node-minibase/minibase-create-plugin.svg?label=github%20tag
 
 [npmv-url]: https://www.npmjs.com/package/minibase-create-plugin
 [npmv-img]: https://img.shields.io/npm/v/minibase-create-plugin.svg?label=npm%20version
@@ -220,7 +220,7 @@ _Project scaffolded using [charlike][] cli._
 
 [bulgaria-url]: https://www.google.bg/search?q=Sofia%2C+Bulgaria "One of the top 10 best places for start-up business in the world, especially in IT technologies"
 
-[changelogmd-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/CHANGELOG.md
+[changelogmd-url]: https://github.com/node-minibase/minibase-create-plugin/blob/master/CHANGELOG.md
 [conventions-url]: https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md
 [tunnckocore-twitter-url]: https://twitter.com/tunnckoCore
 [opensource-project-url]: http://openopensource.org
@@ -233,7 +233,7 @@ _Project scaffolded using [charlike][] cli._
 [conventional-messages-url]: https://github.com/conventional-changelog/conventional-changelog
 [gk-integration-url]: https://github.com/integration/greenkeeper
 [daviddm-url]: https://david-dm.org
-[open-issue-url]: https://github.com/tunnckoCore/minibase-create-plugin/issues/new
-[contributing-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/CONTRIBUTING.md
-[absolute-coverage-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/package.json
+[open-issue-url]: https://github.com/node-minibase/minibase-create-plugin/issues/new
+[contributing-url]: https://github.com/node-minibase/minibase-create-plugin/blob/master/CONTRIBUTING.md
+[absolute-coverage-url]: https://github.com/node-minibase/minibase-create-plugin/blob/master/package.json
 

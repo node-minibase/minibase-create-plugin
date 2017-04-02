@@ -2,7 +2,7 @@
   "name": "minibase-create-plugin",
   "version": "1.0.3",
   "description": "Utility for [base][] and [minibase][]/[dush][] for creating plugins more easily",
-  "repository": "tunnckoCore/minibase-create-plugin",
+  "repository": "node-minibase/minibase-create-plugin",
   "author": "Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)",
   "precommit.silent": true,
   "main": "index.js",

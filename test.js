@@ -1,5 +1,5 @@
 /*!
- * minibase-create-plugin <https://github.com/tunnckoCore/minibase-create-plugin>
+ * minibase-create-plugin <https://github.com/node-minibase/minibase-create-plugin>
  *
  * Copyright (c) Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)
  * Released under the MIT license.
