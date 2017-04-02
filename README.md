@@ -4,22 +4,66 @@
   </a>
 </p>
 
-# minibase-create-plugin [![NPM version](https://img.shields.io/npm/v/minibase-create-plugin.svg?style=flat)](https://www.npmjs.com/package/minibase-create-plugin) [![NPM downloads](https://img.shields.io/npm/dm/minibase-create-plugin.svg?style=flat)](https://npmjs.org/package/minibase-create-plugin) [![npm total downloads][downloads-img]][downloads-url]
+# minibase-create-plugin [![npm version][npmv-img]][npmv-url] [![github tags][ghtag-img]][ghtag-url] [![mit license][license-img]][license-url]
 
-> Utility for [minibase][] and [base][] that helps you create plugins
+> Utility for [base][] and [minibase][]/[dush][] for creating plugins more easily
+
+You might also be interested in [minibase](https://github.com/node-minibase/minibase#readme).
+
+## Quality 👌
+
+> By using [commitizen][czfriendly-url] and [conventional commit messages][conventional-messages-url], 
+maintaining meaningful [ChangeLog][changelogmd-url] 
+and commit history based on [global conventions][conventions-url], 
+following [StandardJS][standard-url] code style through [ESLint][eslint-url] and
+having always up-to-date dependencies through integrations
+like [GreenKeeper][gk-integration-url] and [David-DM][daviddm-url] service,
+this package has top quality.
 
 [![code climate][codeclimate-img]][codeclimate-url] 
-[![standard code style][standard-img]][standard-url] 
-[![linux build status][travis-img]][travis-url] 
-[![windows build status][appveyor-img]][appveyor-url] 
-[![coverage status][coveralls-img]][coveralls-url] 
-[![dependency status][david-img]][david-url]
+[![code style][standard-img]][standard-url] 
+[![commitizen friendly][czfriendly-img]][czfriendly-url] 
+[![greenkeeper friendly][gkfriendly-img]][gkfriendly-url] 
+[![dependencies][daviddm-deps-img]][daviddm-deps-url] 
+<!-- uncomment when need -->
+<!-- [![develop deps][daviddm-devdeps-img]][daviddm-devdeps-url] -->
+
+## Stability 💯
+
+> By following [Semantic Versioning][semver-url] through [standard-version][] releasing tool, 
+this package is very stable and its tests are passing both on [Windows (AppVeyor)][appveyor-ci-url] 
+and [Linux (CircleCI)][circle-ci-url] with results 
+from 100% to [400%][absolute-coverage-url] test coverage, reported respectively
+by [CodeCov][codecov-coverage-url] and [nyc (istanbul)][nyc-istanbul-url].
+
+[![following semver][following-semver-img]][following-semver-url] 
+[![semantic releases][strelease-img]][strelease-url] 
+[![linux build][circle-img]][circle-url] 
+[![windows build][appveyor-img]][appveyor-url] 
+[![code coverage][codecov-img]][codecov-url] 
+[![nyc coverage][istanbulcov-img]][istanbulcov-url] 
+
+## Support :clap:
+
+> If you have any problems, consider opening [an issue][open-issue-url],
+ping me on twitter ([@tunnckoCore][tunnckocore-twitter-url]),
+join the [support chat][supportchat-url] room
+or queue a [live session][codementor-url] on CodeMentor with me.
+If you don't have any problems, you're using it somewhere or
+you just enjoy this product, then please consider [donating some cash][paypalme-url] at PayPal,
+since this is [OPEN Open Source][opensource-project-url] project made
+with love at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
+
+[![tunnckoCore support][supportchat-img]][supportchat-url] 
+[![code mentor][codementor-img]][codementor-url] 
+[![paypal donate][paypalme-img]][paypalme-url] 
+[![NPM monthly downloads](https://img.shields.io/npm/dm/minibase-create-plugin.svg?style=flat)](https://npmjs.org/package/minibase-create-plugin) 
+[![npm total downloads][downloads-img]][downloads-url] 
 
 ## Table of Contents
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
-  * [minibaseCreatePlugin](#minibasecreateplugin)
 - [Related](#related)
 - [Contributing](#contributing)
 - [Building docs](#building-docs)
@@ -51,57 +95,26 @@ const minibaseCreatePlugin = require('minibase-create-plugin')
 
 ## API
 
-### [minibaseCreatePlugin](index.js#L50)
-> Creates a plugin for Base and MiniBase, that uses the [minibase-is-registered][] under the hood to provide more stable and friendly API for plugins.
-
-**Params**
-
-* `name` **{String}**: name of the plugin, passed to `.isRegistered`    
-* `fn` **{Function}**: plugin function, passed to `.use` method, so called immediately    
-* `returns` **{Function}**: plugin function that should be passed to `.use` method  
-
-**Example**
-
-```js
-var minibase = require('minibase')
-var createPlugin = require('minibase-create-plugin')
-
-var called = 0
-
-var plugin = createPlugin('foo-bar', function (self) {
-  called++
-  self.foo = 'bar'
-  self.define('qux', function quxMethod () {})
-  self.define('abc', function abc () {})
-})
-
-minibase.use(plugin)
-minibase.use(plugin)
-
-console.log(minibase.foo) // => 'bar'
-console.log(minibase.qux) // => Function: qux
-console.log(minibase.abc) // => Function: abc
-console.log(minibase.registered) // => { 'foo-bar': ['qux', 'abc'] }
-
-// called only once
-console.log(called) // => 1
-```
-
 ## Related
-- [minibase-assert](https://www.npmjs.com/package/minibase-assert): Plugin for [minibase][] and [base][], that adds assertion methods - most of [assert-kindof][] methods and built-ins… [more](https://github.com/node-minibase/minibase-assert#readme) | [homepage](https://github.com/node-minibase/minibase-assert#readme "Plugin for [minibase][] and [base][], that adds assertion methods - most of [assert-kindof][] methods and built-ins assert module.")
-- [minibase-better-define](https://www.npmjs.com/package/minibase-better-define): Plugin for [base][] and [minibase][] that overrides the core `.define` method to be more better. | [homepage](https://github.com/node-minibase/minibase-better-define#readme "Plugin for [base][] and [minibase][] that overrides the core `.define` method to be more better.")
-- [minibase-is-registered](https://www.npmjs.com/package/minibase-is-registered): Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin… [more](https://github.com/node-minibase/minibase-is-registered#readme) | [homepage](https://github.com/node-minibase/minibase-is-registered#readme "Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and returns true or false if named plugin is already registered on the instance.")
-- [minibase-visit](https://www.npmjs.com/package/minibase-visit): Plugin for [minibase][] and [base][], that adds `.visit` method to your application to visit a method… [more](https://github.com/node-minibase/minibase-visit#readme) | [homepage](https://github.com/node-minibase/minibase-visit#readme "Plugin for [minibase][] and [base][], that adds `.visit` method to your application to visit a method over the items in an object, or map visit over the objects in an array. Using using [collection-visit][] package.")
-- [minibase](https://www.npmjs.com/package/minibase): Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most… [more](https://github.com/node-minibase/minibase#readme) | [homepage](https://github.com/node-minibase/minibase#readme "Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.")
+- [base](https://www.npmjs.com/package/base): Framework for rapidly creating high quality node.js applications, using plugins like building blocks | [homepage](https://github.com/node-base/base "Framework for rapidly creating high quality node.js applications, using plugins like building blocks")
+- [dush-better-use](https://www.npmjs.com/package/dush-better-use): Adds support for named plugins and better error handling, by overriding the default `.use` method | [homepage](https://github.com/tunnckocore/dush-better-use#readme "Adds support for named plugins and better error handling, by overriding the default `.use` method")
+- [dush-no-chaining](https://www.npmjs.com/package/dush-no-chaining): A plugin that removes the emitter methods chaining support for `dush`, `base`, `minibase` or anything based on them | [homepage](https://github.com/tunnckocore/dush-no-chaining#readme "A plugin that removes the emitter methods chaining support for `dush`, `base`, `minibase` or anything based on them")
+- [dush-options](https://www.npmjs.com/package/dush-options): Adds `.option`, `.enable` and `.disable` methods to your `dush` application | [homepage](https://github.com/tunnckocore/dush-options#readme "Adds `.option`, `.enable` and `.disable` methods to your `dush` application")
+- [dush-promise](https://www.npmjs.com/package/dush-promise): Plugin for `dush` that makes it a Deferred promise and adds `.resolve`, `.reject`, `.than` and `.catch` methods for more better… [more](https://github.com/tunnckocore/dush-promise#readme) | [homepage](https://github.com/tunnckocore/dush-promise#readme "Plugin for `dush` that makes it a Deferred promise and adds `.resolve`, `.reject`, `.than` and `.catch` methods for more better error handling experience")
+- [dush-router](https://www.npmjs.com/package/dush-router): A simple regex-based router for `dush`, `base`, `minibase` and anything based on them. Works on Browser and Node.js | [homepage](https://github.com/tunnckocore/dush-router#readme "A simple regex-based router for `dush`, `base`, `minibase` and anything based on them. Works on Browser and Node.js")
+- [dush-tap-report](https://www.npmjs.com/package/dush-tap-report): A simple TAP report producer based on event system. A plugin for `dush` event emitter or anything based on it | [homepage](https://github.com/tunnckocore/dush-tap-report#readme "A simple TAP report producer based on event system. A plugin for `dush` event emitter or anything based on it")
+- [dush](https://www.npmjs.com/package/dush): Microscopic & functional event emitter in ~260 bytes, extensible through plugins. | [homepage](https://github.com/tunnckocore/dush#readme "Microscopic & functional event emitter in ~260 bytes, extensible through plugins.")
+- [minibase-is-registered](https://www.npmjs.com/package/minibase-is-registered): Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and… [more](https://github.com/node-minibase/minibase-is-registered#readme) | [homepage](https://github.com/node-minibase/minibase-is-registered#readme "Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and returns true or false if named plugin is already registered on the instance.")
+- [minibase](https://www.npmjs.com/package/minibase): Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most of the already existing… [more](https://github.com/node-minibase/minibase#readme) | [homepage](https://github.com/node-minibase/minibase#readme "Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.")
 
 ## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/node-minibase/minibase-create-plugin/issues/new).  
-Please read the [contributing guidelines](CONTRIBUTING.md) for advice on opening issues, pull requests, and coding standards.  
-If you need some help and can spent some cash, feel free to [contact me at CodeMentor.io](https://www.codementor.io/tunnckocore?utm_source=github&utm_medium=button&utm_term=tunnckocore&utm_campaign=github) too.
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue][open-issue-url].  
+Please read the [contributing guidelines][contributing-url] for advice on opening issues, pull requests, and coding standards.  
+If you need some help and can spent some cash, feel free to [contact me at CodeMentor.io][codementor-url] too.
 
 **In short:** If you want to contribute to that project, please follow these things
 
-1. Please DO NOT edit [README.md](README.md), [CHANGELOG.md](CHANGELOG.md) and [.verb.md](.verb.md) files. See ["Building docs"](#building-docs) section.
+1. Please DO NOT edit [README.md](README.md), [CHANGELOG.md][changelogmd-url] and [.verb.md](.verb.md) files. See ["Building docs"](#building-docs) section.
 2. Ensure anything is okey by installing the dependencies and run the tests. See ["Running tests"](#running-tests) section.
 3. Always use `npm run commit` to commit changes instead of `git commit`, because it is interactive and user-friendly. It uses [commitizen][] behind the scenes, which follows Conventional Changelog idealogy.
 4. Do NOT bump the version in package.json. For that we use `npm run release`, which is [standard-version][] and follows Conventional Changelog idealogy.
@@ -128,44 +141,99 @@ $ npm install && npm test
 **Charlike Mike Reagent**
 
 + [github/tunnckoCore](https://github.com/tunnckoCore)
-+ [twitter/tunnckoCore](http://twitter.com/tunnckoCore)
++ [twitter/tunnckoCore](https://twitter.com/tunnckoCore)
 + [codementor/tunnckoCore](https://codementor.io/tunnckoCore)
 
 ## License
-Copyright © 2016, [Charlike Mike Reagent](http://i.am.charlike.online). Released under the [MIT license](LICENSE).
+Copyright © 2017, [Charlike Mike Reagent](https://i.am.charlike.online). Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.2.0, on December 05, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.3, on April 02, 2017._  
+_Project scaffolded using [charlike][] cli._
 
-[assert-kindof]: https://github.com/tunnckocore/assert-kindof
 [base]: https://github.com/node-base/base
-[collection-visit]: https://github.com/jonschlinkert/collection-visit
+[charlike]: https://github.com/tunnckocore/charlike
 [commitizen]: https://github.com/commitizen/cz-cli
-[minibase-is-registered]: https://github.com/node-minibase/minibase-is-registered
+[dush]: https://github.com/tunnckocore/dush
 [minibase]: https://github.com/node-minibase/minibase
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [verb-generate-readme]: https://github.com/verbose/verb-generate-readme
 [verb]: https://github.com/verbose/verb
 
+[license-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/LICENSE
+[license-img]: https://img.shields.io/npm/l/minibase-create-plugin.svg
+
 [downloads-url]: https://www.npmjs.com/package/minibase-create-plugin
 [downloads-img]: https://img.shields.io/npm/dt/minibase-create-plugin.svg
 
-[codeclimate-url]: https://codeclimate.com/github/node-minibase/minibase-create-plugin
-[codeclimate-img]: https://img.shields.io/codeclimate/github/node-minibase/minibase-create-plugin.svg
+[codeclimate-url]: https://codeclimate.com/github/tunnckoCore/minibase-create-plugin
+[codeclimate-img]: https://img.shields.io/codeclimate/github/tunnckoCore/minibase-create-plugin.svg
 
-[travis-url]: https://travis-ci.org/node-minibase/minibase-create-plugin
-[travis-img]: https://img.shields.io/travis/node-minibase/minibase-create-plugin/master.svg?label=linux
+[circle-url]: https://circleci.com/gh/tunnckoCore/minibase-create-plugin
+[circle-img]: https://img.shields.io/circleci/project/github/tunnckoCore/minibase-create-plugin/master.svg?label=linux
 
 [appveyor-url]: https://ci.appveyor.com/project/tunnckoCore/minibase-create-plugin
 [appveyor-img]: https://img.shields.io/appveyor/ci/tunnckoCore/minibase-create-plugin/master.svg?label=windows
 
-[coveralls-url]: https://coveralls.io/r/node-minibase/minibase-create-plugin
-[coveralls-img]: https://img.shields.io/coveralls/node-minibase/minibase-create-plugin.svg
+[codecov-url]: https://codecov.io/gh/tunnckoCore/minibase-create-plugin
+[codecov-img]: https://img.shields.io/codecov/c/github/tunnckoCore/minibase-create-plugin/master.svg?label=codecov
 
-[david-url]: https://david-dm.org/node-minibase/minibase-create-plugin
-[david-img]: https://img.shields.io/david/node-minibase/minibase-create-plugin.svg
+[daviddm-deps-url]: https://david-dm.org/tunnckoCore/minibase-create-plugin
+[daviddm-deps-img]: https://img.shields.io/david/tunnckoCore/minibase-create-plugin.svg
+
+[daviddm-devdeps-url]: https://david-dm.org/tunnckoCore/minibase-create-plugin?type=dev
+[daviddm-devdeps-img]: https://img.shields.io/david/dev/tunnckoCore/minibase-create-plugin.svg
+
+[ghtag-url]: https://github.com/tunnckoCore/minibase-create-plugin/tags
+[ghtag-img]: https://img.shields.io/github/tag/tunnckoCore/minibase-create-plugin.svg?label=github%20tag
+
+[npmv-url]: https://www.npmjs.com/package/minibase-create-plugin
+[npmv-img]: https://img.shields.io/npm/v/minibase-create-plugin.svg?label=npm%20version
 
 [standard-url]: https://github.com/feross/standard
 [standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
+
+[paypalme-url]: https://www.paypal.me/tunnckoCore
+[paypalme-img]: https://img.shields.io/badge/paypal-donate-brightgreen.svg
+
+[czfriendly-url]: http://commitizen.github.io/cz-cli
+[czfriendly-img]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+
+[gkfriendly-url]: https://greenkeeper.io/
+[gkfriendly-img]: https://img.shields.io/badge/greenkeeper-friendly-brightgreen.svg
+
+[codementor-url]: https://www.codementor.io/tunnckocore?utm_source=github&utm_medium=button&utm_term=tunnckocore&utm_campaign=github
+[codementor-img]: https://img.shields.io/badge/code%20mentor-live%20session-brightgreen.svg
+
+[istanbulcov-url]: https://twitter.com/tunnckoCore/status/841768516965568512
+[istanbulcov-img]: https://img.shields.io/badge/istanbul-400%25-brightgreen.svg
+
+[following-semver-url]: http://semver.org
+[following-semver-img]: https://img.shields.io/badge/following-semver-brightgreen.svg
+
+[strelease-url]: https://github.com/conventional-changelog/standard-version
+[strelease-img]: https://img.shields.io/badge/using-standard%20version-brightgreen.svg
+
+[supportchat-url]: https://gitter.im/tunnckoCore/support
+[supportchat-img]: https://img.shields.io/gitter/room/tunnckoCore/support.svg
+
+[bulgaria-url]: https://www.google.bg/search?q=Sofia%2C+Bulgaria "One of the top 10 best places for start-up business in the world, especially in IT technologies"
+
+[changelogmd-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/CHANGELOG.md
+[conventions-url]: https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md
+[tunnckocore-twitter-url]: https://twitter.com/tunnckoCore
+[opensource-project-url]: http://openopensource.org
+[nyc-istanbul-url]: https://istanbul.js.org
+[circle-ci-url]: https://circleci.com
+[appveyor-ci-url]: https://appveyor.com
+[codecov-coverage-url]: https://codecov.io
+[semver-url]: http://semver.org
+[eslint-url]: http://eslint.org
+[conventional-messages-url]: https://github.com/conventional-changelog/conventional-changelog
+[gk-integration-url]: https://github.com/integration/greenkeeper
+[daviddm-url]: https://david-dm.org
+[open-issue-url]: https://github.com/tunnckoCore/minibase-create-plugin/issues/new
+[contributing-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/CONTRIBUTING.md
+[absolute-coverage-url]: https://github.com/tunnckoCore/minibase-create-plugin/blob/master/package.json
 

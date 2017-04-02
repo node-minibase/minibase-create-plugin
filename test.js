@@ -1,7 +1,7 @@
 /*!
- * minibase-create-plugin <https://github.com/node-minibase/minibase-create-plugin>
+ * minibase-create-plugin <https://github.com/tunnckoCore/minibase-create-plugin>
  *
- * Copyright (c) Charlike Mike Reagent <@tunnckoCore> (http://i.am.charlike.online)
+ * Copyright (c) Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)
  * Released under the MIT license.
  */
 
@@ -10,57 +10,62 @@
 'use strict'
 
 var test = require('mukla')
-var plugin = require('./index')
-var MiniBase = require('minibase').MiniBase
+var createPlugin = require('./index')
 
-test('should throw TypeError if `name` not a string', function (done) {
-  function fixture () {
-    plugin(123)
-  }
-  test.throws(fixture, TypeError)
-  test.throws(fixture, /expect `name` to be string/)
-  done()
-})
+var dush = require('dush')
+var app = dush()
 
-test('should throw TypeError if `fn` not a function', function (done) {
-  function fixture () {
-    plugin('foo-bar', 123)
-  }
-  test.throws(fixture, TypeError)
-  test.throws(fixture, /expect `fn` to be function/)
-  done()
-})
+test('should return a function that accepts options and returns a plugin', function (done) {
+  app.once('error', done)
 
-test('should register plugin by name to `app.registered`', function (done) {
-  var app = new MiniBase()
-  app.use(plugin('base-foo', function (self) {
-    self.foo = 'bar'
-  }))
-  test.ok(app.registered['base-foo'])
-  test.strictEqual(app._pluginName, 'base-foo')
-  test.strictEqual(app.foo, 'bar')
-
-  app.use(plugin('second-qux', function (self) {
-    self.bar = 'qux'
-  }))
-  test.ok(app.registered['second-qux'])
-  test.strictEqual(app._pluginName, 'second-qux')
-  test.strictEqual(app.bar, 'qux')
-  done()
-})
-
-test('should invoke plugin once, because using isRegistered', function (done) {
-  var base = new MiniBase()
   var called = 0
-  function fn (opts) {
-    return plugin('foo-qux', function noop () {
-      called++
-    })
-  }
+  var plugin = createPlugin('fooquxie', function (app, options) {
+    test.strictEqual(options.foo, 'bar')
+    called++
+  })
 
-  base.use(fn())
-  base.use(fn())
-
+  app.use(plugin({ foo: 'bar' }))
   test.strictEqual(called, 1)
+  test.strictEqual(app.registered.fooquxie, true)
+  done()
+})
+
+test('should merge plugin options with these passed through .use method', function (done) {
+  app.once('error', done)
+
+  var called = false
+  var plugin = createPlugin(function (app, options) {
+    test.strictEqual(options.aaa, 'bbb')
+    test.strictEqual(options.ccc, 12345)
+    called = true
+  })
+  app.use('foo', plugin({ aaa: 'bbb' }), {
+    ccc: 12345
+  })
+
+  test.strictEqual(called, true)
+  test.strictEqual(app.registered.foo, true)
+  done()
+})
+
+test('should not merge plugin options into app.options', function (done) {
+  var called = false
+  var app = dush()
+
+  var plugin = createPlugin('zzz', function (app, options) {
+    test.strictEqual(app.options.foo, 'bar')
+    test.strictEqual(app.options.aaa, undefined)
+    test.strictEqual(app.options.ccc, undefined)
+    test.strictEqual(options.aaa, 'bbb')
+    test.strictEqual(options.ccc, 'ddd')
+    called = true
+  })
+
+  app.once('error', done)
+  app.options = { foo: 'bar' }
+  app.use(plugin({ aaa: 'bbb' }), { ccc: 'ddd' })
+
+  test.strictEqual(called, true)
+  test.strictEqual(app.registered.zzz, true)
   done()
 })
