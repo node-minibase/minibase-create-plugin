@@ -64,6 +64,7 @@ with love at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
+  * [minibaseCreatePlugin](#minibasecreateplugin)
 - [Related](#related)
 - [Contributing](#contributing)
 - [Building docs](#building-docs)
@@ -94,6 +95,80 @@ const minibaseCreatePlugin = require('minibase-create-plugin')
 ```
 
 ## API
+
+### [minibaseCreatePlugin](index.js#L58)
+> A helper function for creating Base/MiniBase plugins. These plugins will be protected by `.isRegistered` too, so plugin will be called only once. If plugin fail, it will emit `error` event, because this utility uses [dush-better-use][] under the hood. The plugin options are not merged with the `app.options`.
+
+**Params**
+
+* `[name]` **{String|Function}**: optional, name of the plugin; or `fn` plugin    
+* `fn` **{Function}**: a plugin function, called with `(app, options)` signature, where `options` is the passed object to the returned function    
+* `returns` **{Function}**: a function that accepts optional `options` object and returns a function that should be passed to `.use` method. Options are also merged with the options passed to the second/third argument of `.use` method, but not with the `app.options` - they are separate things and that's up to you  
+
+**Example**
+
+```js
+var createPlugin = require('minibase-create-plugin')
+
+var dush = require('dush')
+var app = dush()
+
+var called = 0
+var plugin = createPlugin('zazzy', function (app, options) {
+  console.log(app.options) // => undefined
+  console.log(options) // => { foo: 'bar', aaa: 123 }
+  called++
+})
+
+var fn = plugin({ foo: 'bar' })
+
+app.use(fn, { aaa: 123 })
+app.use(fn)
+app.use(fn, { zz: 'zz' })
+
+// called only once
+console.log(called) // => 1
+
+// included at app registered cache
+console.log(app.registered) // => { zazzy: true }
+```
+
+This helper function is meant to be used for creating plugin factories more easily. For example
+if you want to create `some-foo-bar` plugin that adds `.foo` method to app and based
+on plugin options to return different things
+
+**index.js** of `some-foo-bar` plugin:
+
+```js
+var createPlugin = require('minibase-create-plugin')
+
+module.exports = createPlugin('some-foo-bar', function (app, options) {
+  app.define('foo', function (val) {
+    return !val && options.foo ? 123 : 'bar'
+  })
+})
+```
+
+Later use this plugin in [dush][] or [minibase][], by passing it to `.use` method like this
+
+```js
+var MiniBase = require('minibase')
+var plugin = require('some-foo-bar')
+
+var app = MiniBase()
+
+// called only once, no matter
+// it is added multiple times
+app.use(plugin({ foo: 123 }))
+app.use(plugin(), { aa: 'bb' })
+app.use(plugin({ foo: 123 }))
+
+console.log(app.foo()) // => 123
+console.log(app.foo(555)) // => 'bar'
+
+// added to app registered cache too
+console.log(app.registered) // => { 'some-foo-bar': true }
+```
 
 ## Related
 - [base](https://www.npmjs.com/package/base): Framework for rapidly creating high quality node.js applications, using plugins like building blocks | [homepage](https://github.com/node-base/base "Framework for rapidly creating high quality node.js applications, using plugins like building blocks")
@@ -237,3 +312,4 @@ _Project scaffolded using [charlike][] cli._
 [contributing-url]: https://github.com/node-minibase/minibase-create-plugin/blob/master/CONTRIBUTING.md
 [absolute-coverage-url]: https://github.com/node-minibase/minibase-create-plugin/blob/master/package.json
 
+[dush-better-use]: https://github.com/tunnckocore/dush-better-use
