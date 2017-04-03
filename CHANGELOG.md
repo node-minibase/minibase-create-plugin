@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/node-minibase/minibase-create-plugin/compare/v2.0.0...v2.0.1) (2017-04-03)
+
+
+### Bug Fixes
+
+* **compat:** make it work for apps based on Base or Base+base-plugins ([b630cf4](https://github.com/node-minibase/minibase-create-plugin/commit/b630cf4)), closes [#3](https://github.com/node-minibase/minibase-create-plugin/issues/3)
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/node-minibase/minibase-create-plugin/compare/v1.0.3...v2.0.0) (2017-04-02)
 
