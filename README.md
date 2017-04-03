@@ -6,9 +6,10 @@
 
 # minibase-create-plugin [![npm version][npmv-img]][npmv-url] [![github tags][ghtag-img]][ghtag-url] [![mit license][license-img]][license-url]
 
-> Utility helper for creating [dush][]/[minibase][] plugins more easily. Plugins created with this _may_ partially work for [base][] too
+> Utility helper for creating [dush][]/[minibase][] or [base][] named or anonymous plugins more easily
 
-You might also be interested in [minibase](https://github.com/node-minibase/minibase#readme).
+_You might want to use this utility to create plugins for [minibase][] or [base][], 
+even for the miscroscopic event emitter [dush][]._
 
 ## Quality 👌
 
@@ -142,32 +143,52 @@ on plugin options to return different things
 ```js
 var createPlugin = require('minibase-create-plugin')
 
-module.exports = createPlugin('some-foo-bar', function (app, options) {
+module.exports.basePlugin = createPlugin('some-foo-bar', function (app, base, options, env) {
   app.define('foo', function (val) {
     return !val && options.foo ? 123 : 'bar'
   })
 })
+
+module.exports.minibasePlugin = createPlugin('fooqux', function (app, options) {
+  app.define('foo', function () {
+    return options.quxie
+  })
+})
 ```
 
-Later use this plugin in [dush][] or [minibase][], by passing it to `.use` method like this
+Later use this plugin in [dush][]/[minibase][] or [base][], by passing it to `.use` method like this
 
 ```js
-var MiniBase = require('minibase')
-var plugin = require('some-foo-bar')
+var Base = require('base')
 
-var app = MiniBase()
+var plugin = require('some-foo-bar').basePlugin
+var base = new Base()
 
 // called only once, no matter
 // it is added multiple times
-app.use(plugin({ foo: 123 }))
-app.use(plugin(), { aa: 'bb' })
-app.use(plugin({ foo: 123 }))
+base.use(plugin({ foo: 123 }))
+base.use(plugin(), { aa: 'bb' })
+base.use(plugin({ foo: 123 }))
 
-console.log(app.foo()) // => 123
-console.log(app.foo(555)) // => 'bar'
+console.log(base.foo()) // => 123
+console.log(base.foo(555)) // => 'bar'
 
 // added to app registered cache too
-console.log(app.registered) // => { 'some-foo-bar': true }
+console.log(base.registered) // => { 'some-foo-bar': true }
+
+// works for MiniBase/dush too
+var Dush = require('dush')
+var MiniBase = require('minibase')
+
+var minibase = MiniBase()
+var dush = Dush()
+
+var plugin = require('some-foo-bar').minibasePlugin
+minibase.use(plugin({ quxie: 555 }))
+console.log(minibase.foo()) // => 555
+
+dush.use(plugin({ quxie: 'abc' }))
+console.log(dush.foo()) // => 'abc'
 ```
 
 ## Related
@@ -178,8 +199,8 @@ console.log(app.registered) // => { 'some-foo-bar': true }
 - [dush-promise](https://www.npmjs.com/package/dush-promise): Plugin for `dush` that makes it a Deferred promise and adds `.resolve`, `.reject`, `.than` and `.catch` methods for more better… [more](https://github.com/tunnckocore/dush-promise#readme) | [homepage](https://github.com/tunnckocore/dush-promise#readme "Plugin for `dush` that makes it a Deferred promise and adds `.resolve`, `.reject`, `.than` and `.catch` methods for more better error handling experience")
 - [dush-router](https://www.npmjs.com/package/dush-router): A simple regex-based router for `dush`, `base`, `minibase` and anything based on them. Works on Browser and Node.js | [homepage](https://github.com/tunnckocore/dush-router#readme "A simple regex-based router for `dush`, `base`, `minibase` and anything based on them. Works on Browser and Node.js")
 - [dush-tap-report](https://www.npmjs.com/package/dush-tap-report): A simple TAP report producer based on event system. A plugin for `dush` event emitter or anything based on it | [homepage](https://github.com/tunnckocore/dush-tap-report#readme "A simple TAP report producer based on event system. A plugin for `dush` event emitter or anything based on it")
-- [dush](https://www.npmjs.com/package/dush): Microscopic & functional event emitter in ~260 bytes, extensible through plugins. | [homepage](https://github.com/tunnckocore/dush#readme "Microscopic & functional event emitter in ~260 bytes, extensible through plugins.")
-- [minibase-is-registered](https://www.npmjs.com/package/minibase-is-registered): Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and… [more](https://github.com/node-minibase/minibase-is-registered#readme) | [homepage](https://github.com/node-minibase/minibase-is-registered#readme "Plugin for [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and returns true or false if named plugin is already registered on the instance.")
+- [dush](https://www.npmjs.com/package/dush): Microscopic & functional event emitter in ~350 bytes, extensible through plugins | [homepage](https://github.com/tunnckocore/dush#readme "Microscopic & functional event emitter in ~350 bytes, extensible through plugins")
+- [minibase-is-registered](https://www.npmjs.com/package/minibase-is-registered): Plugin for [dush][], [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered… [more](https://github.com/node-minibase/minibase-is-registered#readme) | [homepage](https://github.com/node-minibase/minibase-is-registered#readme "Plugin for [dush][], [minibase][] and [base][], that adds `isRegistered` method to your application to detect if plugin is already registered and returns true or false if named plugin is already registered on the instance")
 - [minibase](https://www.npmjs.com/package/minibase): Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most of the already existing… [more](https://github.com/node-minibase/minibase#readme) | [homepage](https://github.com/node-minibase/minibase#readme "Minimalist alternative for Base. Build complex APIs with small units called plugins. Works well with most of the already existing [base][] plugins.")
 
 ## Contributing
@@ -224,7 +245,7 @@ Copyright © 2016-2017, [Charlike Mike Reagent](https://i.am.charlike.online). R
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.3, on April 02, 2017._  
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.3, on April 03, 2017._  
 _Project scaffolded using [charlike][] cli._
 
 [base]: https://github.com/node-base/base

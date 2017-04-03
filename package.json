@@ -1,7 +1,7 @@
 {
   "name": "minibase-create-plugin",
   "version": "2.0.0",
-  "description": "Utility helper for creating [dush][]/[minibase][] plugins more easily. Plugins created with this _may_ partially work for [base][] too",
+  "description": "Utility helper for creating [dush][]/[minibase][] or [base][] named or anonymous plugins more easily",
   "repository": "node-minibase/minibase-create-plugin",
   "author": "Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)",
   "precommit.silent": true,
