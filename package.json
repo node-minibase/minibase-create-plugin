@@ -20,10 +20,12 @@
     "commit": "npm-run-all -s test git"
   },
   "dependencies": {
-    "dush-better-use": "^1.1.0",
+    "dush-better-use": "^1.1.1",
     "mixin-deep": "^1.2.0"
   },
   "devDependencies": {
+    "base": "^0.13.0",
+    "base-plugins": "^1.0.0",
     "commitizen": "~2.7.0",
     "cz-conventional-changelog": "1.1.5",
     "dush": "^3.0.4",

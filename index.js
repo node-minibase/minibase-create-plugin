@@ -57,9 +57,29 @@ var betterUse = require('dush-better-use')
 
 module.exports = function minibaseCreatePlugin (name, fn) {
   return function _generatedPlugin (options) {
-    return function _generatedPlugin (app, opts) {
-      app.use(betterUse())
-      app.use(name, fn, mixinDeep({}, options, opts))
+    return function _generatedPlugin (app, opts, pluginOptionsOfBaseApps) {
+      // when your app is based on Base,
+      // plugin options are passed as 3rd argument
+      if (app.isBase) {
+        opts = pluginOptionsOfBaseApps
+      }
+
+      // when `base-plugins` is registered
+      // we don't need to add `dush-better-use`
+      if (!app.isBase || (app.isRegistered && !app.isRegistered('base-plugins'))) {
+        app.use(betterUse())
+      }
+
+      // merge options passed to .use method
+      // and the options passed to the plugin function
+      // e.g. app.use('foobar', plugin({ foo: 1 }), { bar: 2 })
+      opts = mixinDeep({}, options, opts)
+
+      // partial fix
+      // @see https://github.com/node-base/base-plugins/issues/5
+      fn = app.isBase && !fn ? opts : fn
+
+      app.use(name, fn, opts)
       return app
     }
   }

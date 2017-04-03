@@ -12,6 +12,9 @@
 var test = require('mukla')
 var createPlugin = require('./index')
 
+var plugins = require('base-plugins')
+var Base = require('base')
+
 var dush = require('dush')
 var app = dush()
 
@@ -68,4 +71,32 @@ test('should not merge plugin options into app.options', function (done) {
   test.strictEqual(called, true)
   test.strictEqual(app.registered.zzz, true)
   done()
+})
+
+test('should work for raw Base apps, which not use base-plugins', function (done) {
+  var plugin = createPlugin(function somePlugin (app, base, options, env) {
+    test.strictEqual(arguments.length, 4)
+    test.strictEqual(options.abc, 'xyz')
+    done()
+  })
+
+  var base = new Base()
+  base.on('error', done)
+  base.use(plugin({ abc: 'xyz' }))
+  done()
+})
+
+test('should work for Base apps that uses base-plugins', function (done) {
+  var base = new Base()
+  base.use(plugins())
+
+  var foobarPlugin = createPlugin(function (app, base, options) {
+    test.deepEqual(options, {
+      xxx: 'vbz',
+      baz: 12345
+    })
+    done()
+  })
+
+  base.use(foobarPlugin({ xxx: 'vbz' }), { baz: 12345 })
 })
